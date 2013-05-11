@@ -1,4 +1,4 @@
-grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
+grails.servlet.version = "3.0" // Change depending on target container compliance (2.5 or 3.0)
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
@@ -34,9 +34,10 @@ grails.project.dependency.resolution = {
 
         mavenRepo 'http://artifactory.milesburton.com/artifactory/remote-repos'
         mavenRepo 'http://artifactory.milesburton.com/artifactory/public'
+        mavenRepo 'http://oss.sonatype.org/content/repositories/snapshots/'
     }
 
-    def gebVersion = "0.9.0-SNAPSHOT"
+    def gebVersion = "0.9.0"
     def seleniumVersion = "2.21.0"
 
     dependencies {

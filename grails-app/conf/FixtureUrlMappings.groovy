@@ -1,10 +1,10 @@
-import grails.util.GrailsUtil
+import grails.util.Environment
 
 class FixtureUrlMappings {
 
     static mappings = {
 
-        if (["test", "development"].contains(GrailsUtil.getEnvironment())) {
+        if (["test", "development"].contains(Environment.current.name)) {
 
 
         }
