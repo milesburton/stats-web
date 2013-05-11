@@ -7,7 +7,7 @@
 
 <div class="row">
 
-    <div class="span12">
+    <div class="span12" id="teams">
 
         <div class="widget stacked widget-table">
 
@@ -20,13 +20,35 @@
                 <table class="table table-bordered table-striped">
 
                     <thead><tr>
-                        <th>Referrer</th>
-                        <th>Uniques</th>
+                        <th>Rank</th>
+                        <th>Team ID</th>
+                        <th>Alias</th>
+                        <th>Points (Day)</th>
+                        <th>Points (Week)</th>
+                        <th>Points (Total)</th>
+                        <th>Work Units (Total)</th>
                     </tr></thead>
 
-                    <tbody><tr>
-                        <td class="description"><a href="http://google.com">http://google.com</a></td>
-                        <td class="value"><span>1123</span></td>
+                    <tbody>
+
+                    <tr>
+                        <td class="rank">1</td>
+                        <td class="id">62</td>
+                        <td class="alias">AgileView</td>
+                        <td class="points-day">1</td>
+                        <td class="points-week">2</td>
+                        <td class="points-total">3</td>
+                        <td class="wu-total">3</td>
+                    </tr>
+
+                    <tr>
+                        <td class="rank">2</td>
+                        <td class="id">63</td>
+                        <td class="alias">AgileView 2</td>
+                        <td class="points-day">4</td>
+                        <td class="points-week">5</td>
+                        <td class="points-total">6</td>
+                        <td class="wu-total">7</td>
                     </tr>
 
                     </tbody></table>
