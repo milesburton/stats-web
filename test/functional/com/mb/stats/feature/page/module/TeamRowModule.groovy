@@ -5,29 +5,35 @@ import geb.Module
 class TeamRowModule extends Module {
 
     boolean hasCorrectColumns() {
-        columns.size() == 7
+        columns.size() == 9
     }
 
     boolean isTeam(Map team) {
 
-        rank.text() == team.rank &&
-                teamId.text() == team.id &&
+        teamId.text() == team.teamId &&
                 alias.text() == team.alias &&
-                pointsDay.text() == team.pointsDay &&
-                pointsWeek.text() == team.pointsWeek &&
-                wuTotal.text() == team.wusTotal
+                ptsTotal.text() == team.ptsTotal &&
+                ptsDelta.text() == team.ptsDelta &&
+                wuTotal.text() == team.wuTotal &&
+                rank.text() == team.rank &&
+                rankDelta.text() == team.rankDelta &&
+                ptsDay.text() == team.ptsDay &&
+                ptsWeek.text() == team.ptsWeek
+
     }
 
     static content = {
 
-        columns         {  $('td') }
+        columns { $('td') }
 
-        rank            {  $('.rank') }
-        teamId          {  $('.id') }
-        alias           {  $('.alias') }
-        pointsDay       {  $('.points-day') }
-        pointsWeek      {  $('.points-week') }
-        pointsTotal     {  $('.points-total') }
-        wuTotal         {  $('.wu-total') }
+        teamId          { $('.teamId') }
+        alias           { $('.alias') }
+        ptsTotal        { $('.ptsTotal') }
+        ptsDelta        { $('.ptsDelta') }
+        wuTotal         { $('.wuTotal') }
+        rank            { $('.rank') }
+        rankDelta       { $('.rankDelta') }
+        ptsDay          { $('.ptsDay') }
+        ptsWeek         { $('.ptsWeek') }
     }
 }

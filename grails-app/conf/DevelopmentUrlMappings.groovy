@@ -4,9 +4,11 @@ class DevelopmentUrlMappings {
 
     static mappings = {
 
-        if (["production"].contains(Environment.current.name)) {
+        if (["development"].contains(Environment.current.name)) {
 
             "500"(view: '/errors/RuntimeException')
+            "BANG"(view: '/errors/500')
+
         }
 
     }

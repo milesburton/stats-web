@@ -19,13 +19,13 @@
             </div> <!-- /error-details -->
 
             <div class="error-actions">
-                <a href="./index.html" class="btn btn-large btn-primary">
+                <a href="/" class="btn btn-large btn-primary">
                     <i class="icon-chevron-left"></i>
                     &nbsp;
                     Back to Dashboard
                 </a>
 
-                <a href="./faq.html" class="btn btn-large">
+                <a href="" class="btn btn-large">
                     <i class="icon-envelope"></i>
                     &nbsp;
                     Contact Support

@@ -1,9 +1,9 @@
 package com.mb.stats.feature.spec
 
-import com.mb.stats.feature.page.HomePage
+import com.mb.stats.feature.page.TeamsPage
 import geb.spock.GebSpec
 
-class HomePageSpec extends GebSpec {
+class TeamsPageSpec extends GebSpec {
 
     def 'user is shown home page'() {
 
@@ -14,10 +14,10 @@ class HomePageSpec extends GebSpec {
         ]
 
         when:
-        to HomePage
+        to TeamsPage
 
         then:
-        at HomePage
+        at TeamsPage
 
         and:
         navbar.hasCorrectHeading()
@@ -28,6 +28,8 @@ class HomePageSpec extends GebSpec {
         and:
         teams.title == 'Teams'
         teams.rows.size() == teamsList.size()
+        teams.hasCorrectHeadings()
+        teams.rows*.hasCorrectColumns()
         teams.containsTeams(teamsList)
     }
 }

@@ -16,6 +16,22 @@ class TeamListTableModule extends Module {
 
     }
 
+    boolean hasCorrectHeadings(){
+
+        headings.size() == 8
+        
+        headings*.text() == [
+                'Rank',
+                'Team ID',
+                'Alias',
+                "Points (Last Update)",
+                "Points (Day)",
+                "Points (Week)",
+                "Points (Total)",
+                "Work Units (Total)"
+        ]
+    }
+
 
     static content = {
 
