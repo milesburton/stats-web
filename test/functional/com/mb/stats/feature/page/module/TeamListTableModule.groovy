@@ -4,15 +4,11 @@ import geb.Module
 
 class TeamListTableModule extends Module {
 
-    boolean containsTeam(Map team){
+    void containsTeams(List<Map> teams){
 
-        rows.find { it.isTeam(team) }
-
-    }
-
-    boolean containsTeams(List<Map> teams){
-
-       !teams.find { !containsTeam(it) }
+       teams.eachWithIndex { Map team, int i ->
+            rows[i].isTeam(team)
+       }
 
     }
 
@@ -35,9 +31,9 @@ class TeamListTableModule extends Module {
 
     static content = {
 
-        title      { $('.widget-header').text() }
+        title      { $('.widget-header h3').text() }
 
-        headings   { $('table > th') }
+        headings   { $('th') }
         rows       { moduleList TeamRowModule, $('table > tbody > tr') }
     }
 

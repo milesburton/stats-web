@@ -4,7 +4,7 @@ import com.mb.stats.feature.base.MainTemplatePage
 
 class Error500Page extends MainTemplatePage {
 
-    static url = '/bang'
+    static url = 'BANG'
 
     static at = {
         assert title == 'Oops, an error occurred'

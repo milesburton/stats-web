@@ -4,7 +4,7 @@ import com.mb.stats.feature.base.MainTemplatePage
 
 class Error404Page extends MainTemplatePage {
 
-    static url = '/AMISSINGPAGE'
+    static url = 'AMISSINGPAGE'
 
     static at = {
 

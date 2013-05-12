@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.chrome.ChromeDriver
 
 if(!baseUrl){
-    baseUrl = "http://localhost:8080/stats-web"
+    baseUrl = "http://localhost:8080/stats-web/"
 }
 
 // Use htmlunit as the default

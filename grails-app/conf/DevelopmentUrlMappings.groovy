@@ -7,8 +7,6 @@ class DevelopmentUrlMappings {
         if (["development"].contains(Environment.current.name)) {
 
             "500"(view: '/errors/RuntimeException')
-            "BANG"(view: '/errors/500')
-
         }
 
     }
