@@ -5,7 +5,7 @@ import com.mb.stats.feature.page.module.TeamListTableModule
 
 class TeamsPage extends MainTemplatePage {
 
-    static url = ''
+    static url = '/'
 
     static at = {
         assert title == 'Home'
