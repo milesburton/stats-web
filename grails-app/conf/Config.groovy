@@ -125,12 +125,8 @@ environments {
 
 private void setDynamicServerUrl() {
 
-    def port = 8080
-    if (System.hasProperty('server.port')) {
-        port = System.getProperty('server.port')
-    }
-
-    grails.serverURL = "http://localhost:$port/stats-web"
+    int applicationPort = (System.getProperty('server.port') ?: 8080).toInteger()
+    grails.serverURL = "http://localhost:$applicationPort/stats-web"
 }
 
 private void useFakeRazerApi() {
