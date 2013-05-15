@@ -8,6 +8,9 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.chrome.ChromeDriver
 
+baseUrl = System.getProperty('geb.http.baseurl') ?: "http://localhost:8080/stats-web/"
+secureBaseUrl = System.getProperty('geb.https.baseurl') ?: "http://localhost:8080/stats-web/"
+
 // Use htmlunit as the default
 // See: http://code.google.com/p/selenium/wiki/HtmlUnitDriver
 driver = { 
