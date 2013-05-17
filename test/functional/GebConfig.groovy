@@ -11,10 +11,6 @@ import org.openqa.selenium.chrome.ChromeDriver
 baseUrl = System.getProperty('geb.http.baseurl') ?: "http://localhost:8080/stats-web/"
 secureBaseUrl = System.getProperty('geb.https.baseurl') ?: "http://localhost:8080/stats-web/"
 
-println "Using baseUrl: ${baseUrl}"
-
-reportsDir = 'target/test-reports/screenshots'
-
 // Use htmlunit as the default
 // See: http://code.google.com/p/selenium/wiki/HtmlUnitDriver
 driver = { 
