@@ -28,13 +28,21 @@ class TeamListTableModule extends Module {
         ]
     }
 
-
     static content = {
 
         title      { $('.widget-header h3').text() }
 
         headings   { $('th') }
         rows       { moduleList TeamRowModule, $('table > tbody > tr') }
+
+        rank       { $('th a.rank') }
+        teamId     { $('th a.id') }
+        alias      { $('th a.alias') }
+        ptsDelta   { $('th a.ptsDelta') }
+        ptsDay     { $('th a.ptsDay') }
+        ptsWeek    { $('th a.ptsWeek') }
+        ptsTotal   { $('th a.ptsTotal') }
+        wusTotal   { $('th a.wusTotal') }
     }
 
 }

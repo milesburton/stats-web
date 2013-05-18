@@ -42,8 +42,8 @@ class TeamFixture implements UsesBaseUrlTag {
         def offset = query.offset
         def offsetPlusLimit = offset + query.limit - 1
 
-
         def teams = teamFixtures.results[offset..offsetPlusLimit]
+        teams = teams.sort { it."${query.sort}"  }
 
         [
                 total: teamFixtures.total,

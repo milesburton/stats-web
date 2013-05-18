@@ -77,6 +77,7 @@ stats {
         offset {
             defaultValue = 0
         }
+
         limit {
             defaultValue = 50
             min = 1

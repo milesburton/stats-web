@@ -13,7 +13,12 @@ class StubApiController {
         def offsetPlusLimit = offset + params.limit.toLong() - 1
 
 
-        def teams = teamFixtures.results[offset..offsetPlusLimit]
+        def teams = teamFixtures.results[offset..offsetPlusLimit].sort { it."${params.sort}" }
+
+        if (params.order.equals('desc')) {
+            teams = teams.reverse()
+        }
+
 
         def j = [
                 total: teamFixtures.total,

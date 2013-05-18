@@ -11,14 +11,14 @@
         <table class="table table-bordered table-striped">
 
             <thead><tr>
-                <th>Rank</th>
-                <th>Team ID</th>
-                <th>Alias</th>
-                <th>Points (Last Update)</th>
-                <th>Points (Day)</th>
-                <th>Points (Week)</th>
-                <th>Points (Total)</th>
-                <th>Work Units (Total)</th>
+                <th><teams:link sort="rank">Rank</teams:link></th>
+                <th><teams:link sort="teamId">Team ID</teams:link></th>
+                <th><teams:link sort="alias">Alias</teams:link></th>
+                <th><teams:link sort="ptsDelta">Points (Last Update)</teams:link></th>
+                <th><teams:link sort="ptsDay">Points (Day)</teams:link></th>
+                <th><teams:link sort="ptsWeek">Points (Week)</teams:link></th>
+                <th><teams:link sort="ptsTotal">Points (Total)</teams:link></th>
+                <th><teams:link sort="wusTotal">Work Units (Total)</teams:link></th>
             </tr></thead>
 
             <tbody>
