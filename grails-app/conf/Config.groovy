@@ -111,7 +111,7 @@ environments {
     development {
         grails.logging.jul.usebridge = true
         setDynamicServerUrl()
-        useFakeRazerApi()
+        useStubRazerApi()
     }
 
     test {
@@ -134,5 +134,11 @@ private void setDynamicServerUrl() {
 private void useFakeRazerApi() {
 
     stats.api.endpoint = "${grails.serverURL}/fake/api"
+
+}
+
+private void useStubRazerApi() {
+
+    stats.api.endpoint = "${grails.serverURL}/stub/api"
 
 }

@@ -9,7 +9,7 @@ class TeamService {
 
     Map list(Map query) {
 
-        def resource = queryStringBuilderService.asResource('/team', query)
+        def resource = queryStringBuilderService.asResource('/teams', query)
         razerClient.get(resource).bodyAsJsonMap
     }
 

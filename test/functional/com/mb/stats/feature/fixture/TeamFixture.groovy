@@ -40,7 +40,7 @@ class TeamFixture implements UsesBaseUrlTag {
         def teamFixtures = JSON.parse(getClass().getResourceAsStream('teams.json').text)
 
         def offset = query.offset
-        def offsetPlusLimit = offset + query.limit
+        def offsetPlusLimit = offset + query.limit - 1
 
 
         def teams = teamFixtures.results[offset..offsetPlusLimit]

@@ -1,10 +1,10 @@
 import grails.util.Environment
 
-class FixtureUrlMappings {
+class TestUrlMappings {
 
     static mappings = {
 
-        if (["test", "development"].contains(Environment.current.name)) {
+        if (["test"].contains(Environment.current.name)) {
 
 
             '/fake/reset'           (controller: 'fakeApi', action: [ POST: 'reset' ])
