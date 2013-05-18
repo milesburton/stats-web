@@ -18,7 +18,7 @@
                 <th><teams:link sort="ptsDay">Points (Day)</teams:link></th>
                 <th><teams:link sort="ptsWeek">Points (Week)</teams:link></th>
                 <th><teams:link sort="ptsTotal">Points (Total)</teams:link></th>
-                <th><teams:link sort="wusTotal">Work Units (Total)</teams:link></th>
+                <th><teams:link sort="wuTotal">Work Units (Total)</teams:link></th>
             </tr></thead>
 
             <tbody>

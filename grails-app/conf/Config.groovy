@@ -71,7 +71,7 @@ stats {
 
         sort {
             options = ["teamId", "alias", "ptsTotal", "ptsDelta", "wuTotal", "wuDelta", "rank", "rankDelta", "ptsDay", "ptsWeek"]
-            defaultValue = "ptsTotal"
+            defaultValue = "rank"
         }
 
         offset {

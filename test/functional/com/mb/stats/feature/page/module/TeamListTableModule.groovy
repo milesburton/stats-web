@@ -36,13 +36,13 @@ class TeamListTableModule extends Module {
         rows       { moduleList TeamRowModule, $('table > tbody > tr') }
 
         rank       { $('th a.rank') }
-        teamId     { $('th a.id') }
+        teamId     { $('th a.teamId') }
         alias      { $('th a.alias') }
         ptsDelta   { $('th a.ptsDelta') }
         ptsDay     { $('th a.ptsDay') }
         ptsWeek    { $('th a.ptsWeek') }
         ptsTotal   { $('th a.ptsTotal') }
-        wusTotal   { $('th a.wusTotal') }
+        wuTotal    { $('th a.wuTotal') }
     }
 
 }
