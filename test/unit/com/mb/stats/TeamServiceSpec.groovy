@@ -4,7 +4,7 @@ import com.popcornteam.restclient.RestClient
 import com.popcornteam.restclient.response.StubRestResponse
 import spock.lang.Specification
 
-import static test.QueryStringHelper.asQueryString
+import static com.test.QueryStringHelper.asQueryString
 
 class TeamServiceSpec extends Specification {
 

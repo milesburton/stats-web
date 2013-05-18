@@ -53,6 +53,8 @@ log4j = {
             'org.springframework',
             'org.hibernate',
             'net.sf.ehcache.hibernate'
+
+    info 'net.xelnaga.httpimposter'
 }
 
 stats {
@@ -131,6 +133,6 @@ private void setDynamicServerUrl() {
 
 private void useFakeRazerApi() {
 
-    stats.api.endpoint = "${grails.serverURL}/fixture/api"
+    stats.api.endpoint = "${grails.serverURL}/fake/api"
 
 }

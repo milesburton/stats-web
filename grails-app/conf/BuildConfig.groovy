@@ -35,7 +35,8 @@ grails.project.dependency.resolution = {
     dependencies {
 
         compile 'joda-time:joda-time:2.0',
-                'com.popcornteam:restclient:1.0.130113.1729'
+                'com.popcornteam:restclient:1.0.130113.1729',
+                "net.xelnaga:http-imposter:1.0.130111.1333"
 
 
         test("org.seleniumhq.selenium:selenium-htmlunit-driver:$seleniumVersion") {
@@ -69,4 +70,9 @@ grails.project.dependency.resolution = {
 
         test ":geb:$gebVersion"
     }
+}
+
+grails.war.resources = { stagingDir ->
+    delete(file:"${stagingDir}/WEB-INF/classes/com/test/QueryStringHelper.class")
+    delete(dir:"${stagingDir}/WEB-INF/classes/com/test")
 }

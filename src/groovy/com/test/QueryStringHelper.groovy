@@ -1,4 +1,4 @@
-package test
+package com.test
 
 class QueryStringHelper {
 
@@ -9,6 +9,6 @@ class QueryStringHelper {
             def encodedValue = URLEncoder.encode(v.toString(), 'UTF8')
             "${k}=${encodedValue}"
 
-        }.join("&")
+        }.sort().join("&")
     }
 }

@@ -25,8 +25,8 @@ class QueryStringBuilderServiceSpec extends Specification {
         resource | params                         | expectedPath
         'test'   | ["pie": "weeble"]              | "test?pie=weeble"
         'test'   | [:]                             | "test"
-        'test'   | ["pie": "weeble", bob: 'pie']  | "test?pie=weeble&bob=pie"
-        'test'   | ["pie": "weeble", bob: 'pie?'] | "test?pie=weeble&bob=pie%3F"
+        'test'   | ["pie": "weeble", bob: 'pie']  | "test?bob=pie&pie=weeble"
+        'test'   | ["pie": "weeble", bob: 'pie?'] | "test?bob=pie%3F&pie=weeble"
 
     }
 }

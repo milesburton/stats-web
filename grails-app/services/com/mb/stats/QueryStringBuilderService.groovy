@@ -22,6 +22,6 @@ class QueryStringBuilderService {
             def encodedValue = URLEncoder.encode(v.toString(), 'UTF8')
             "${k}=${encodedValue}"
 
-        }.join("&")
+        }.sort().join("&")
     }
 }

@@ -6,7 +6,11 @@ class FixtureUrlMappings {
 
         if (["test", "development"].contains(Environment.current.name)) {
 
-            "/fixture/api/team"  (controller: 'fakeTeamApiEndPoint', action: 'list')
+
+            '/fake/reset'           (controller: 'fakeApi', action: [ POST: 'reset' ])
+            '/fake/configure'       (controller: 'fakeApi', action: [ POST: 'configure' ])
+
+            '/fake/**'               (controller: 'fakeApi', action: [ GET: 'index' ])
         }
     }
 }
