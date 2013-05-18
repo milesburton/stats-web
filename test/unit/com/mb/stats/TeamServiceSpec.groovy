@@ -62,7 +62,7 @@ class TeamServiceSpec extends Specification {
         results == expectedResults
 
         and:
-        1 * mockQueryStringBuilderService.asResource('/teams', params) >> teamResourceWith(params)
+        1 * mockQueryStringBuilderService.asResource('teams', params) >> teamResourceWith(params)
         1 * mockRazerClient.get(teamResourceWith(params)) >> new StubRestResponse(200, expectedResults)
         0 * _._
     }

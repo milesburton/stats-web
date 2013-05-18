@@ -6,7 +6,7 @@ class ProductionUrlMappings {
 
         if (["production"].contains(Environment.current.name)) {
 
-            "500"   (view: '/errors/500')
+            "500"                   (view: '/errors/500')
         }
 
     }

@@ -10,7 +10,7 @@ class TestUrlMappings {
             '/fake/reset'           (controller: 'fakeApi', action: [ POST: 'reset' ])
             '/fake/configure'       (controller: 'fakeApi', action: [ POST: 'configure' ])
 
-            '/fake/**'               (controller: 'fakeApi', action: [ GET: 'index' ])
+            '/fake/**'              (controller: 'fakeApi', action: [ GET: 'index' ])
         }
     }
 }

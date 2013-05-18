@@ -6,7 +6,7 @@ class DevelopmentTestUrlMappings {
 
         if (["development","test"].contains(Environment.current.name)) {
 
-            "/BANG"(view: '/errors/500')
+            "/BANG"                 (view: '/errors/500')
         }
 
     }

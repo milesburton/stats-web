@@ -60,7 +60,7 @@ log4j = {
 stats {
 
     api {
-        endpoint = "http://api.razerstats.com/v1"
+        endpoint = "http://api.razerstats.com/v1/"
     }
 
     teams {
@@ -133,12 +133,12 @@ private void setDynamicServerUrl() {
 
 private void useFakeRazerApi() {
 
-    stats.api.endpoint = "${grails.serverURL}/fake/api"
+    stats.api.endpoint = "${grails.serverURL}/fake/api/"
 
 }
 
 private void useStubRazerApi() {
 
-    stats.api.endpoint = "${grails.serverURL}/stub/api"
+    stats.api.endpoint = "${grails.serverURL}/stub/api/"
 
 }

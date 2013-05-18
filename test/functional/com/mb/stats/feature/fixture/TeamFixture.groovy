@@ -18,7 +18,7 @@ class TeamFixture implements UsesBaseUrlTag {
         String queryString = QueryStringHelper.asQueryString(params)
 
         return new ImposterRequest(
-                uri: "/stats-web/fake/api/team?${queryString}",
+                uri: "/stats-web/fake/api/teams?${queryString}",
                 method: 'GET',
                 headers: [new HttpHeader('accept', 'application/json')],
                 body: ''
