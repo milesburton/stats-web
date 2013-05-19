@@ -11,18 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link href="${resource(dir: 'css', file: 'bootstrap.min.css')}" rel="stylesheet">
-    <link href="${resource(dir: 'css', file: 'bootstrap-responsive.min.css')}" rel="stylesheet">
-
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
-    <link href="${resource(dir: 'css', file: 'font-awesome.min.css')}" rel="stylesheet">
-
-    <link href="${resource(dir: 'css/ui-lightness', file: 'jquery-ui-1.10.0.custom.min.css')}" rel="stylesheet">
-
-    <link href="${resource(dir: 'css', file: 'base-admin-2.css')}" rel="stylesheet">
-    <link href="${resource(dir: 'css', file: 'base-admin-2-responsive.css')}" rel="stylesheet">
-
-    <link href="${resource(dir: 'css', file: 'custom.css')}" rel="stylesheet">
+    <r:require modules="baseadmin, jquery191"/>
 
     <link rel="shortcut icon" href="${resource(dir: 'img', file: 'favicon.ico')}" type="image/x-icon">
 
@@ -31,40 +20,27 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" type="text/css" rel="screenshot" media="screen, projection" />
     <g:layoutHead/>
     <r:layoutResources/>
 </head>
 
 <body>
-<g:render template="/common/navbar" />
+<g:render template="/common/navbar"/>
 
-<g:render template="/common/subnavbar" />
+<g:render template="/common/subnavbar"/>
 
 <div class="main">
 
     <div class="container">
-
         <g:layoutBody/>
-    </div> <!-- /container -->
+    </div>
 
-</div> <!-- /main -->
+</div>
 
 
-<g:render template="/common/footer" />
-
-<script src="${resource(dir: 'js/libs', file: 'jquery-1.8.3.min.js')}"></script>
-<script src="${resource(dir: 'js/libs', file: 'jquery-ui-1.10.0.custom.min.js')}"></script>
-<script src="${resource(dir: 'js/libs', file: 'bootstrap.min.js')}"></script>
-
-<script src="${resource(dir: 'js/plugins/flot', file: 'jquery.flot.js')}"></script>
-<script src="${resource(dir: 'js/plugins/flot', file: 'jquery.flot.pie.js')}"></script>
-<script src="${resource(dir: 'js/plugins/flot', file: 'jquery.flot.resize.js')}"></script>
-
-<g:javascript library="application"/>
+<g:render template="/common/footer"/>
 <r:layoutResources/>
-
-<script src="./js/charts/area.js"></script>
-<script src="./js/charts/donut.js"></script>
 
 </body>
 </html>

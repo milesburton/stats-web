@@ -48,21 +48,25 @@ grails.project.dependency.resolution = {
                 "org.spockframework:spock-grails-support:0.7-groovy-2.0",
                 "org.gebish:geb-spock:$gebVersion",
                 'org.objenesis:objenesis:1.2',
-                'cglib:cglib:3.0'
+                'cglib:cglib:3.0',
+                'org.grails:grails-test-suite-base:2.2.2'
 
 
     }
 
     plugins {
 
-        runtime ":jquery:1.8.0"
-        runtime ":resources:1.1.6"
-        runtime ":cors:1.0.3"
+        runtime ":jquery:1.8.0",
+                ":resources:1.1.6",
+                ":cors:1.0.3",
+                ":zipped-resources:1.0",
+                ":cached-resources:1.0"
 
-        build ":tomcat:$grailsVersion"
+                build ":tomcat:$grailsVersion"
 
-        compile ':cache:1.0.0'
-        compile ":cache-headers:1.1.5"
+        compile ':cache:1.0.0',
+                ":cache-headers:1.1.5",
+                ":lesscss-resources:1.3.3"
 
         test(":spock:0.7") {
             exclude "spock-grails-support"
@@ -73,6 +77,6 @@ grails.project.dependency.resolution = {
 }
 
 grails.war.resources = { stagingDir ->
-    delete(file:"${stagingDir}/WEB-INF/classes/com/test/QueryStringHelper.class")
-    delete(dir:"${stagingDir}/WEB-INF/classes/com/test")
+    delete(file: "${stagingDir}/WEB-INF/classes/com/test/QueryStringHelper.class")
+    delete(dir: "${stagingDir}/WEB-INF/classes/com/test")
 }

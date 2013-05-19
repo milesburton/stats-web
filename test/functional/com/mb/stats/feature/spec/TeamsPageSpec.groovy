@@ -34,6 +34,13 @@ class TeamsPageSpec extends ApiSpec {
         teams.hasCorrectHeadings()
         teams.rows*.hasCorrectColumns()
         teams.containsTeams(teamsList.results)
+
+        and: 'validate pagination'
+        teams.pagination.pages.size() == 8
+        teams.pagination.pages*.text() == ["1", "2", "3", "4", "5", "..", "20", "Forward"]
+        !teams.pagination.prevLink.displayed
+        teams.pagination.nextLink.displayed
+
     }
 
     @Unroll
@@ -106,6 +113,42 @@ class TeamsPageSpec extends ApiSpec {
                 'wuTotal',
         ]
     }
+
+    @Unroll
+    def "user can paginate through pages"() {
+
+        given:
+        buildTeamFixturesFor(defaultQuery)
+
+        when:
+        to TeamsPage
+
+        then:
+        at TeamsPage
+
+        and:
+        teams.pagination.activePage.text() == '1'
+
+        when:
+        buildTeamFixturesFor([offset: 50, limit: 50, sort: 'rank', order: 'desc'])
+
+        and:
+        teams.pagination.nextLink.click()
+
+        then:
+        teams.pagination.activePage.text() == '2'
+
+
+        when:
+        buildTeamFixturesFor(defaultQuery)
+
+        and:
+        teams.pagination.prevLink.click()
+
+        then:
+        teams.pagination.activePage.text() == '1'
+    }
+
 
     def buildTeamFixturesFor(Map query) {
 

@@ -13,7 +13,7 @@
                 <ul class="mainnav">
 
                     <li class="active">
-                        <a href="./index.html">
+                        <a href="${serverURL}">
                             <i class="icon-home"></i>
                             <span>Home</span>
                         </a>

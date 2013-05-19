@@ -33,6 +33,7 @@ class TeamListTableModule extends Module {
         title      { $('.widget-header h3').text() }
 
         headings   { $('th') }
+        pagination { module PaginationModule, $('.pagination') }
         rows       { moduleList TeamRowModule, $('table > tbody > tr') }
 
         rank       { $('th a.rank') }

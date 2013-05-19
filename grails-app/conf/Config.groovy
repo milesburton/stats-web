@@ -16,7 +16,9 @@ grails.mime.types = [
         xml: ['text/xml', 'application/xml']
 ]
 
-grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
+grails.resources.adhoc.patterns = ['/img/*', '/css/*', '/js/*', '/plugins/*', '/font/*']
+grails.resources.debug = false
+
 
 grails.views.default.codec = "html"
 grails.views.gsp.encoding = "UTF-8"

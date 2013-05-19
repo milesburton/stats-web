@@ -9,7 +9,7 @@
                 <i class="icon-cog"></i>
             </a>
 
-            <a class="brand" href="/">
+            <a class="brand" href="${serverURL}">
                 Razer Folding@Home Statistics
             </a>
 
