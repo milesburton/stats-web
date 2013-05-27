@@ -1,5 +1,6 @@
 package com.mb.stats.feature.spec
 
+import com.mb.stats.feature.fixture.TeamFixture
 import com.mb.stats.feature.fixture.TeamsFixture
 import com.mb.stats.feature.page.TeamPage
 import com.mb.stats.feature.page.TeamsPage
@@ -8,14 +9,15 @@ import spock.lang.Unroll
 
 class TeamsPageSpec extends ApiSpec {
 
-    TeamsFixture teamFixture = new TeamsFixture()
+    TeamsFixture teamsFixture = new TeamsFixture()
+    TeamFixture teamFixture = new TeamFixture()
 
     def defaultQuery = [offset: 0, limit: 50, sort: 'rank', order: 'desc']
 
     def 'user is shown teams page'() {
 
         given:
-        def teamsList = buildTeamFixturesFor(defaultQuery)
+        def teamsList = buildTeamsFixturesFor(defaultQuery)
 
         when:
         to TeamsPage
@@ -49,7 +51,7 @@ class TeamsPageSpec extends ApiSpec {
 
         given:
         def initialQuery = [offset: 0, limit: 50, sort: 'rank', order: 'desc']
-        buildTeamFixturesFor(initialQuery)
+        buildTeamsFixturesFor(initialQuery)
 
         when:
         to TeamsPage, initialQuery
@@ -58,7 +60,7 @@ class TeamsPageSpec extends ApiSpec {
         at TeamsPage
 
         when:
-        def teamsList = buildTeamFixturesFor(offset: 0, limit: 50, sort: requestedSort, order: 'desc')
+        def teamsList = buildTeamsFixturesFor(offset: 0, limit: 50, sort: requestedSort, order: 'desc')
 
         and:
         teams."${requestedSort}".click()
@@ -84,7 +86,7 @@ class TeamsPageSpec extends ApiSpec {
 
         given:
         def initialQuery = [offset: 0, limit: 50, sort: requestedSort, order: 'desc']
-        buildTeamFixturesFor(initialQuery)
+        buildTeamsFixturesFor(initialQuery)
 
         when:
         to TeamsPage, initialQuery
@@ -93,7 +95,7 @@ class TeamsPageSpec extends ApiSpec {
         at TeamsPage
 
         when:
-        def teamsList = buildTeamFixturesFor(offset: 0, limit: 50, sort: requestedSort, order: 'asc')
+        def teamsList = buildTeamsFixturesFor(offset: 0, limit: 50, sort: requestedSort, order: 'asc')
 
         and:
         teams."${requestedSort}".click()
@@ -119,7 +121,7 @@ class TeamsPageSpec extends ApiSpec {
     def "user can paginate through pages"() {
 
         given:
-        buildTeamFixturesFor(defaultQuery)
+        buildTeamsFixturesFor(defaultQuery)
 
         when:
         to TeamsPage
@@ -131,7 +133,7 @@ class TeamsPageSpec extends ApiSpec {
         teams.pagination.activePage.text() == '1'
 
         when:
-        buildTeamFixturesFor([offset: 50, limit: 50, sort: 'rank', order: 'desc'])
+        buildTeamsFixturesFor([offset: 50, limit: 50, sort: 'rank', order: 'desc'])
 
         and:
         teams.pagination.nextLink.click()
@@ -141,7 +143,7 @@ class TeamsPageSpec extends ApiSpec {
 
 
         when:
-        buildTeamFixturesFor(defaultQuery)
+        buildTeamsFixturesFor(defaultQuery)
 
         and:
         teams.pagination.prevLink.click()
@@ -153,7 +155,7 @@ class TeamsPageSpec extends ApiSpec {
     def 'user can navigate to team'() {
 
         given:
-        def teamsList = buildTeamFixturesFor(defaultQuery)
+        def teamsList = buildTeamsFixturesFor(defaultQuery)
 
         when:
         to TeamsPage
@@ -161,8 +163,11 @@ class TeamsPageSpec extends ApiSpec {
         then:
         at TeamsPage
 
-        when:
+        and:
         String teamId = teams.rows[0].teamId.text()
+
+        when:
+        buildTeamFixtureFor(teamId)
 
         and:
         teams.rows[0].alias.click()
@@ -175,15 +180,27 @@ class TeamsPageSpec extends ApiSpec {
     }
 
 
-    def buildTeamFixturesFor(Map query) {
+    def buildTeamsFixturesFor(Map query) {
 
-        def teamsList = teamFixture.forQuery(query)
+        def teamsList = teamsFixture.forQuery(query)
 
         imposterRemote.reset()
         imposterRemote.configure(
-                teamFixture.get(query),
-                teamFixture.andRespondWith(teamsList))
+                teamsFixture.get(query),
+                teamsFixture.andRespondWith(teamsList))
 
         teamsList
+    }
+
+    def buildTeamFixtureFor(def teamId){
+
+        def team = teamFixture.forQuery(teamId)
+
+        imposterRemote.reset()
+        imposterRemote.configure(
+                teamFixture.get(teamId),
+                teamFixture.andRespondWith(team))
+
+        team
     }
 }

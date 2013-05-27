@@ -14,7 +14,7 @@ class FakeApiController {
 
         String url = request.forwardURI
 
-        if (request.params) {
+        if (request.queryString) {
             url += "?${request.queryString}"
         }
 
