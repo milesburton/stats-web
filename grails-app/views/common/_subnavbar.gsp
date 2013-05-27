@@ -13,10 +13,10 @@
                 <ul class="mainnav">
 
                     <li class="active">
-                        <a href="${serverURL}">
+                        <g:link mapping="home">
                             <i class="icon-home"></i>
                             <span>Home</span>
-                        </a>
+                        </g:link>
                     </li>
 
                 </ul>

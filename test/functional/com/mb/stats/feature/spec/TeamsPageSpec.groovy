@@ -1,13 +1,14 @@
 package com.mb.stats.feature.spec
 
-import com.mb.stats.feature.fixture.TeamFixture
+import com.mb.stats.feature.fixture.TeamsFixture
+import com.mb.stats.feature.page.TeamPage
 import com.mb.stats.feature.page.TeamsPage
 import com.mb.stats.feature.spec.base.ApiSpec
 import spock.lang.Unroll
 
 class TeamsPageSpec extends ApiSpec {
 
-    TeamFixture teamFixture = new TeamFixture()
+    TeamsFixture teamFixture = new TeamsFixture()
 
     def defaultQuery = [offset: 0, limit: 50, sort: 'rank', order: 'desc']
 
@@ -147,6 +148,30 @@ class TeamsPageSpec extends ApiSpec {
 
         then:
         teams.pagination.activePage.text() == '1'
+    }
+
+    def 'user can navigate to team'() {
+
+        given:
+        def teamsList = buildTeamFixturesFor(defaultQuery)
+
+        when:
+        to TeamsPage
+
+        then:
+        at TeamsPage
+
+        when:
+        String teamId = teams.rows[0].teamId.text()
+
+        and:
+        teams.rows[0].alias.click()
+
+        then:
+        at TeamPage
+
+        and:
+        titleContains(teamId)
     }
 
 

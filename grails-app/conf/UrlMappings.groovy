@@ -2,9 +2,21 @@ class UrlMappings {
 
     static mappings = {
 
+        name home: "/" {
+            controller = 'teams'
+            action = 'list'
+        }
 
-        "/"                 (controller: 'teams', action: 'list')
-        "/teams"            (controller: 'teams', action: 'list')
-        "404"               (view: '/errors/404')
+        name teamsList: "/teams" {
+            controller = 'teams'
+            action = 'list'
+        }
+
+        name teamDetails: "/teams/$teamId" {
+            controller = 'teams'
+            action = 'show'
+        }
+
+        "404"(view: '/errors/404')
     }
 }

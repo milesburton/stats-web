@@ -24,6 +24,16 @@ class TeamsController {
         [teams: teams]
     }
 
+    def show(Long teamId){
+
+        cache cachableTillNextUpdateService.tillNextUpdate()
+
+        def team = teamService.get(teamId)
+
+        [team: team]
+
+    }
+
     private Map getConfig() {
         grailsApplication.config.stats.teams
     }

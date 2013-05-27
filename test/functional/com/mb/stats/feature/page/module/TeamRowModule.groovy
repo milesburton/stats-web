@@ -25,15 +25,14 @@ class TeamRowModule extends Module {
        assert ptsDay.text() == df.format(team.ptsDay)
        assert ptsWeek.text() == df.format(team.ptsWeek)
 
-
     }
 
     static content = {
 
-        columns { $('td') }
+        columns         { $('td') }
 
         teamId          { $('.teamId') }
-        alias           { $('.alias') }
+        alias           { $('.alias a') }
         ptsTotal        { $('.ptsTotal') }
         ptsDelta        { $('.ptsDelta') }
         wuTotal         { $('.wuTotal') }

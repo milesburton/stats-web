@@ -13,4 +13,8 @@ class TeamService {
         razerClient.get(resource).bodyAsJsonMap
     }
 
+    Map get(Long teamId) {
+        razerClient.get("teams/${teamId}").bodyAsJsonMap
+    }
+
 }

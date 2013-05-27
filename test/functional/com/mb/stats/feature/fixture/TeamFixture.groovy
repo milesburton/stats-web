@@ -5,49 +5,46 @@ import grails.converters.JSON
 import net.xelnaga.httpimposter.model.HttpHeader
 import net.xelnaga.httpimposter.model.ImposterRequest
 import net.xelnaga.httpimposter.model.ImposterResponse
-import com.test.QueryStringHelper
 
-import static org.apache.http.HttpStatus.*
+import static org.apache.http.HttpStatus.SC_NOT_FOUND
+import static org.apache.http.HttpStatus.SC_OK
 
 class TeamFixture implements UsesBaseUrlTag {
 
     String baseUrl
 
-    ImposterRequest get(Map params) {
-
-        String queryString = QueryStringHelper.asQueryString(params)
+    ImposterRequest get(String teamId) {
 
         return new ImposterRequest(
-                uri: "/stats-web/fake/api/teams?${queryString}",
+                uri: "/stats-web/fake/api/teams/${teamId}",
                 method: 'GET',
                 headers: [new HttpHeader('accept', 'application/json')],
                 body: ''
         )
     }
 
-    ImposterResponse andRespondWith(def teams) {
+    ImposterResponse andRespondWith(def team) {
 
         return new ImposterResponse(
                 status: SC_OK.value,
                 headers: [],
-                body: teams as JSON
+                body: team as JSON
 
         )
     }
 
-    def forQuery(Map query) {
+    ImposterResponse andRespondWith404() {
 
-        def teamFixtures = JSON.parse(getClass().getResourceAsStream('teams.json').text)
+        return new ImposterResponse(
+                status: SC_NOT_FOUND.value,
+                headers: [],
+                body: ''
 
-        def offset = query.offset
-        def offsetPlusLimit = offset + query.limit - 1
+        )
+    }
 
-        def teams = teamFixtures.results[offset..offsetPlusLimit]
-        teams = teams.sort { it."${query.sort}"  }
+    def forQuery(String teamId) {
 
-        [
-                total: teamFixtures.total,
-                results: teams
-        ]
+        JSON.parse(getClass().getResourceAsStream('teams.json').text).results.find { it.teamId.toString() == teamId }
     }
 }

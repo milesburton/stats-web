@@ -41,4 +41,22 @@ class TeamsControllerSpec extends Specification {
         1 * controller.teamService.list(['offset':null, 'limit':null, 'sort':null, 'order':null]) >> fakeResult
         0 * _._
     }
+
+    def 'get'() {
+
+        given:
+        def teamId = 62
+
+        when:
+        def model = controller.show(teamId)
+
+        then:
+        model.team == [:]
+
+        and:
+        mockCache.verifyCacheCalled(controller)
+        1 * controller.cachableTillNextUpdateService.tillNextUpdate() >> [:]
+        1 * controller.teamService.get(teamId) >> fakeResult
+        0 * _._
+    }
 }

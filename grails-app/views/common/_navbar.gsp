@@ -9,14 +9,14 @@
                 <i class="icon-cog"></i>
             </a>
 
-            <a class="brand" href="${serverURL}">
-                Razer Folding@Home Statistics
-            </a>
+            <g:link mapping="home" class="brand">
+                ${pageProperty(name: 'page.heading', default: 'Razer Folding@Home Statistics')}
+            </g:link>
 
-            </div><!--/.nav-collapse -->
+        </div><!--/.nav-collapse -->
 
-        </div> <!-- /container -->
+    </div> <!-- /container -->
 
-    </div> <!-- /navbar-inner -->
+</div> <!-- /navbar-inner -->
 
 </div> <!-- /navbar -->

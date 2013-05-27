@@ -8,7 +8,7 @@
     </td>
     <td class="teamId"><g:formatNumber number="${team.teamId}" type="number"
                                        maxFractionDigits="0"/></td>
-    <td class="alias"><%=team.alias%></td>
+    <td class="alias"><g:link mapping="teamDetails" params="[teamId:team.teamId.toLong()]"><%=team.alias%></g:link></td>
 
     <td class="ptsDelta"><g:formatNumber number="${team.ptsDelta}" type="number"
                                          maxFractionDigits="0"/></td>

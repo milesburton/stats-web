@@ -7,12 +7,19 @@ import net.xelnaga.httpimposter.filter.HttpHeaderFilter
 class FakeApiController {
 
 
-    private static final HttpHeaderFilter FILTER = new HeaderNameExclusionFilter([ 'Host', 'User-Agent', 'Connection', 'Content-Length' ])
-    private static final HttpImposter IMPOSTER = new HttpImposter(filter:  FILTER)
+    private static final HttpHeaderFilter FILTER = new HeaderNameExclusionFilter(['Host', 'User-Agent', 'Connection', 'Content-Length'])
+    private static final HttpImposter IMPOSTER = new HttpImposter(filter: FILTER)
 
     def index() {
-        println "${request.forwardURI}?${request.queryString}"
-        IMPOSTER.respond("${request.forwardURI}?${request.queryString}", request, response)
+
+        String url = request.forwardURI
+
+        if (request.params) {
+            url += "?${request.queryString}"
+        }
+
+        print url
+        IMPOSTER.respond(url, request, response)
     }
 
     def reset() {

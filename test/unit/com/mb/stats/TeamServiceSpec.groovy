@@ -67,6 +67,36 @@ class TeamServiceSpec extends Specification {
         0 * _._
     }
 
+    def 'get'() {
+
+        given:
+        def teamId = 62
+
+        and:
+        def expectedTeam = [
+                "teamId": 0,
+                "alias": "Default (includes all those WU returned without valid team number)",
+                "ptsTotal": 29605774170,
+                "ptsDelta": 4442714,
+                "wuTotal": 107440067,
+                "rank": 1,
+                "rankDelta": 0,
+                "ptsDay": 27983419,
+                "ptsWeek": 215813611
+        ]
+
+
+        when:
+        def results = service.get(teamId)
+
+        then:
+        results == expectedTeam
+
+        and:
+        1 * mockRazerClient.get("teams/${teamId}") >> new StubRestResponse(200, expectedTeam)
+        0 * _._
+    }
+
     private String teamResourceWith(Map params) {
         "teams?${asQueryString(params)}"
     }

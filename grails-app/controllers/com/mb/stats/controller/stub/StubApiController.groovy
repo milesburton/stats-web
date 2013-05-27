@@ -4,10 +4,9 @@ import grails.converters.JSON
 
 class StubApiController {
 
-    def team() {
+    def teams() {
 
-
-        def teamFixtures = JSON.parse(getClass().getResourceAsStream('teams.json').text)
+        def teamFixtures = fetchTeamFixtures()
 
         def offset = params.offset.toLong()
         def offsetPlusLimit = offset + params.limit.toLong() - 1
@@ -26,5 +25,21 @@ class StubApiController {
         ]
 
         render j as JSON
+    }
+
+    def team(Long teamId) {
+
+        def team = fetchTeamFixtures().results.find { it.teamId == teamId }
+
+        if (team) {
+            render team as JSON
+        } else {
+            render status: 400
+        }
+
+    }
+
+    private def fetchTeamFixtures() {
+        JSON.parse(getClass().getResourceAsStream('teams.json').text)
     }
 }

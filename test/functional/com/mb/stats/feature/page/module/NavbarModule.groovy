@@ -4,8 +4,8 @@ import geb.Module
 
 class NavbarModule extends Module {
 
-    boolean hasCorrectHeading(){
-        brand.text() == 'Razer Folding@Home Statistics'
+    boolean hasCorrectHeading(String expectedHeading = 'Razer Folding@Home Statistics'){
+        brand.text() == expectedHeading
     }
 
     static content = {
