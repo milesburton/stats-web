@@ -6,7 +6,7 @@ import spock.lang.Specification
 
 import static com.test.QueryStringHelper.asQueryString
 
-class TeamServiceSpec extends Specification {
+class TeamsServiceSpec extends Specification {
 
     def service
     def mockRazerClient
@@ -14,7 +14,7 @@ class TeamServiceSpec extends Specification {
 
     def 'setup'() {
 
-        service = new TeamService()
+        service = new TeamsService()
 
         mockRazerClient = Mock(RestClient)
         service.razerClient = mockRazerClient
@@ -62,8 +62,8 @@ class TeamServiceSpec extends Specification {
         results == expectedResults
 
         and:
-        1 * mockQueryStringBuilderService.asResource('teams', params) >> teamResourceWith(params)
-        1 * mockRazerClient.get(teamResourceWith(params)) >> new StubRestResponse(200, expectedResults)
+        1 * mockQueryStringBuilderService.asResource('teams', params) >> ""
+        1 * mockRazerClient.get("") >> new StubRestResponse(200, expectedResults)
         0 * _._
     }
 
@@ -97,9 +97,34 @@ class TeamServiceSpec extends Specification {
         0 * _._
     }
 
-    private String teamResourceWith(Map params) {
-        "teams?${asQueryString(params)}"
+    def 'fetchHistory'(){
+
+        given:
+        def teamId = 62
+        def timestampBegin = 0
+        def timestampEnd = 1
+
+        and:
+        def historyResult = ["total": 1, "results": [["teamId": 62, "alias": "futuremark.com", "ptsTotal": 222954209, "ptsDelta": 3009, "wuTotal": 845065, "wuDelta": 5, "rank": 145, "rankDelta": 0, "ptsDay": 56876, "ptsWeek": 418592, "timestamp": 1369736406000]]]
+
+
+        when:
+        def results = service.fetchHistory(new RequestHistory(teamId:teamId, timestampBegin: timestampBegin, timestampEnd: timestampEnd))
+
+        then:
+        results == historyResult
+
+        and:
+        1 * mockQueryStringBuilderService.asResource("teams/${teamId}/history", [timestampBegin: timestampBegin, timestampEnd: timestampEnd]) >> ""
+        1 * mockRazerClient.get("") >> new StubRestResponse(200, historyResult)
+        0 * _._
     }
+
+    private String teamResourceWith(String resource, Map params) {
+        "${resource}?${asQueryString(params)}"
+    }
+
+
 
 
 }

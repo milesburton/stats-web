@@ -39,7 +39,16 @@ class StubApiController {
 
     }
 
+    def teamHistory(Long teamId){
+
+        render fetchTeamHistoryFixtures() as JSON
+    }
+
     private def fetchTeamFixtures() {
         JSON.parse(getClass().getResourceAsStream('teams.json').text)
+    }
+
+    private def fetchTeamHistoryFixtures() {
+        JSON.parse(getClass().getResourceAsStream('teamhistory.json').text)
     }
 }

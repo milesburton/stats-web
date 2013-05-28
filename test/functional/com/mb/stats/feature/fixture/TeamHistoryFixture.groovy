@@ -9,11 +9,11 @@ import net.xelnaga.httpimposter.model.ImposterResponse
 import static org.apache.http.HttpStatus.SC_NOT_FOUND
 import static org.apache.http.HttpStatus.SC_OK
 
-class TeamFixture implements UsesBaseUrlTag {
+class TeamHistoryFixture implements UsesBaseUrlTag {
 
     String baseUrl
 
-    ImposterRequest get(String teamId, Long timestampBegin, Long timestampEnd) {
+    ImposterRequest get(Long teamId, Long timestampBegin, Long timestampEnd) {
 
         return new ImposterRequest(
                 uri: "/stats-web/fake/api/teams/${teamId}/history?timestampBegin=${timestampBegin}&timestampEnd=${timestampEnd}",
@@ -33,7 +33,7 @@ class TeamFixture implements UsesBaseUrlTag {
         )
     }
 
-    def forQuery(String teamId, Long timestampBegin, Long timestampEnd) {
+    def forQuery(Long teamId, Long timestampBegin, Long timestampEnd) {
 
         JSON.parse(getClass().getResourceAsStream('teamHistory.json').text)
     }

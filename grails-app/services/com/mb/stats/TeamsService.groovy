@@ -2,7 +2,7 @@ package com.mb.stats
 
 import com.popcornteam.restclient.RestClient
 
-class TeamService {
+class TeamsService {
 
     RestClient razerClient
     QueryStringBuilderService queryStringBuilderService
@@ -17,4 +17,9 @@ class TeamService {
         razerClient.get("teams/${teamId}").bodyAsJsonMap
     }
 
+    Map fetchHistory(RequestHistory requestHistory) {
+
+        def resource = queryStringBuilderService.asResource("teams/${requestHistory.teamId}/history", [timestampBegin: requestHistory.timestampBegin, timestampEnd: requestHistory.timestampEnd])
+        razerClient.get(resource).bodyAsJsonMap
+    }
 }

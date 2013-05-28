@@ -1,10 +1,11 @@
 package com.mb.stats.feature.spec
 
-import com.mb.stats.feature.fixture.TeamHistoryFixture
 import com.mb.stats.feature.fixture.TeamFixture
+import com.mb.stats.feature.fixture.TeamHistoryFixture
 import com.mb.stats.feature.page.TeamPage
 import com.mb.stats.feature.spec.base.ApiSpec
-import com.test.QueryStringHelper
+
+import static com.test.QueryStringHelper.asQueryString
 
 class TeamPageSpec extends ApiSpec {
 
@@ -32,25 +33,26 @@ class TeamPageSpec extends ApiSpec {
         and:
         hasCorrectHeadings(team)
     }
-    
-    def 'highcharts expects history of daily point peaks'(){
-      
-      given:
-      def teamId = 62
-      def timestampBegin = 0
-      def timestampEnd = 10
-      
-      and:
-      def history = buildTeamHistoryFixturesFor(teamId, timestampBegin, timestampEnd)
-      
-      when:
-      def response = restClient.get("/teams/${teamId}/history?" + asQueryString([timestampBegin:timestampBegin,timestampEnd:timestampEnd]))
-      
-      then:
-      response = []
-      
+
+    def 'highcharts expects history of daily point peaks'() {
+
+        given:
+        def teamId = 62
+        def timestampBegin = 0
+        def timestampEnd = 10
+
+        and:
+        def history = buildTeamHistoryFixturesFor(teamId, timestampBegin, timestampEnd)
+        def expectedResponse = history.results.collect { [it.timestamp, it.ptsTotal] }.sort { it[0] }
+
+        when:
+        def response = jsonClient.get("teams/${teamId}/history?" + asQueryString([timestampBegin: timestampBegin, timestampEnd: timestampEnd]))
+
+        then:
+        response == expectedResponse
+
     }
-    
+
     def buildTeamFixturesFor(String teamId) {
 
         def team = teamFixture.forQuery(teamId)
@@ -62,10 +64,10 @@ class TeamPageSpec extends ApiSpec {
 
         team
     }
-    
-    def buildTeamHistoryFixturesFor(String teamId, Long timestampBegin, Long timestampEnd) {
-        
-         def history = teamHistoryFixture.forQuery(teamId, timestampBegin, timestampEnd)
+
+    def buildTeamHistoryFixturesFor(Long teamId, Long timestampBegin, Long timestampEnd) {
+
+        def history = teamHistoryFixture.forQuery(teamId, timestampBegin, timestampEnd)
 
         imposterRemote.reset()
         imposterRemote.configure(
@@ -73,6 +75,6 @@ class TeamPageSpec extends ApiSpec {
                 teamHistoryFixture.andRespondWith(history))
 
         history
-        
+
     }
 }

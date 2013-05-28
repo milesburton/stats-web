@@ -17,6 +17,11 @@ class UrlMappings {
             action = 'show'
         }
 
+        name teamHistory: "/teams/$teamId/history" {
+            controller = 'teams'
+            action = 'history'
+        }
+
         "404"(view: '/errors/404')
     }
 }

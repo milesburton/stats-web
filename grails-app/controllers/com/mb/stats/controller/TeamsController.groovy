@@ -1,15 +1,14 @@
 package com.mb.stats.controller
 
-import com.mb.stats.CachableTillNextUpdateService
-import com.mb.stats.ListParamSanitizerService
-import com.mb.stats.TeamService
-
+import com.mb.stats.*
+import grails.converters.JSON
 
 class TeamsController {
 
-    TeamService teamService
+    TeamsService teamsService
     ListParamSanitizerService listParamSanitizerService
     CachableTillNextUpdateService cachableTillNextUpdateService
+    HistoryAggregatorService historyAggregatorService
 
     def list() {
 
@@ -19,19 +18,28 @@ class TeamsController {
 
         def query = [offset: params.offset, limit: params.limit, sort: params.sort, order: params.order]
 
-        def teams = teamService.list(query)
+        def teams = teamsService.list(query)
 
         [teams: teams]
     }
 
-    def show(Long teamId){
+    def show(Long teamId) {
 
         cache cachableTillNextUpdateService.tillNextUpdate()
 
-        def team = teamService.get(teamId)
+        def team = teamsService.get(teamId)
 
         [team: team]
 
+    }
+
+    def history(Long teamId) {
+
+        cache cachableTillNextUpdateService.tillNextUpdate()
+
+        def result = teamsService.fetchHistory(new RequestHistory(teamId: teamId, timestampBegin: params.timestampBegin, timestampEnd: params.timestampEnd))
+
+        render historyAggregatorService.aggregate(new BulkHistorySource(historyMap: result)) as JSON
     }
 
     private Map getConfig() {
