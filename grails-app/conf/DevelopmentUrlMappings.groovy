@@ -6,10 +6,11 @@ class DevelopmentUrlMappings {
 
         if (["development"].contains(Environment.current.name)) {
 
-            "500"                           (view: '/errors/RuntimeException')
+            "500"                               (view: '/errors/RuntimeException')
 
-            "/stub/api/teams"               (controller: 'stubApi', action: [ GET: 'teams' ])
-            "/stub/api/teams/$teamId"       (controller: 'stubApi', action: [ GET: 'team' ])
+            "/stub/api/teams"                   (controller: 'stubApi', action: [ GET: 'teams' ])
+            "/stub/api/teams/$teamId"           (controller: 'stubApi', action: [ GET: 'team' ])
+            "/stub/api/teams/$teamId/history"   (controller: 'stubApi', action: [ GET: 'teamHistory' ])
         }
 
     }

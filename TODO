@@ -1,0 +1,176 @@
+// Mock out teams history api
+
+// Create action on teams which produces history for the last month
+// will need to aggregate the stop points for points per week etc
+// End point on team controller will need to return a FORMATTED version of the history api
+
+
+ jQuery(function () {
+        var peaks = [
+                [1246406400000, 25000],
+                [1246492800000, 27300],
+                [1246579200000, 40982],
+                [1246665600000, 34120],
+                [1246752000000, 47012],
+                [1246838400000, 26204],
+                [1246924800000, 33102],
+                [1247011200000, 62345],
+                [1247097600000, 50120],
+                [1247184000000, 40123],
+                [1247270400000, 37982],
+                [1247356800000, 34953],
+                [1247443200000, 41982],
+                [1247529600000, 42000]
+            ]
+
+        var trend = [
+                [1246406400000, 25500],
+           		[1246492800000, 26000],
+       			[1246579200000, 27000],
+       			[1246665600000, 29000],
+       			[1246752000000, 31000],
+       			[1246838400000, 27000],
+       			[1246924800000, 28000],
+       			[1247011200000, 33000],
+       			[1247097600000, 36000],
+       			[1247184000000, 36000],
+       			[1247270400000, 34000],
+       			[1247356800000, 32500],
+       			[1247443200000, 36000],
+                [1247529600000, 42000],
+                [1247616000000, 42900],
+                [1247702400000, 43800],
+                [1247788800000, 44700],
+                [1247875200000, 45600],
+                [1247961600000, 46500],
+                [1248048000000, 47400],
+                [1248134400000, 48300],
+                [1248220800000, 49200],
+                [1248307200000, 50100],
+                [1248393600000, 51000],
+                [1248480000000, 51900],
+                [1248566400000, 52800],
+                [1248652800000, 53700],
+                [1248739200000, 54600],
+                [1248825600000, 55500],
+                [1248912000000, 56400],
+                [1248998400000, 57300],
+                [1248998400000, 58200],
+                [1248998400000, 59100]
+            ]
+
+        var forecast = [
+                [1247529600000,42000,42000],
+                [1247616000000,42471,43329],
+                [1247702400000,42924,44676],
+                [1247788800000,43359,46041],
+                [1247875200000,43776,47424],
+                [1247961600000,44175,48825],
+                [1248048000000,44556,50244],
+                [1248134400000,44919,51681],
+                [1248220800000,45264,53136],
+                [1248307200000,45591,54609],
+                [1248393600000,45900,56100],
+                [1248480000000,46191,57609],
+                [1248566400000,46464,59136],
+                [1248652800000,46719,60681],
+                [1248739200000,46956,62244],
+                [1248825600000,47175,63825],
+                [1248912000000,47376,65424],
+                [1248998400000,47559,67041]
+            ]
+
+        jQuery("#peakProfileGraph${position}").highcharts({
+                exporting:{
+                enabled:false
+            },
+            xAxis: {
+ 		        type: 'datetime',
+                lineColor:'#000000',
+                lineWidth:1,
+                labels: {
+                    formatter: function() {
+                       return Highcharts.dateFormat('%d %b %Y', this.value);
+                    },
+                    rotation: -30,
+                    align: 'right'
+                }
+ 		    },
+            yAxis:{
+                title: {
+                                   text: ''
+                },
+                labels: {
+                    formatter: function() {
+                        return Highcharts.numberFormat(this.value,0,'.',',');
+                }},
+                lineColor:'#000000',
+                lineWidth:1
+            },
+          title: {
+                text: 'Trended Forecast of Transactions Per Second'
+            },
+//          tooltip: {
+//                formatter: function () {
+//                    return '<b>' + this.x + '</b><br/>' +
+//                            this.series.name + ': ' + this.y + '<br/>' +
+//                            'Total: ' + this.point.stackTotal;
+//                }
+//            },
+            plotOptions: {
+                area:{
+                    marker: {
+                        enabled:false
+                    }
+                },
+                column: {
+                    borderWidth:1,
+                    pointWidth:0,
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                        formatter: function(){
+                            if(this.y>0){
+                                return this.y;
+                            }
+                        }
+                    },
+                    events: {
+                        legendItemClick: function () {
+                            console.log(this)
+                        }
+                    }
+                }
+            },
+            series: [
+                {
+               		        name: 'Daily Peaks',
+               		        data: peaks,
+               		        type: 'area',
+               		        lineWidth: 0,
+               		    	color: Highcharts.getOptions().colors[${position}],
+               		    	fillOpacity: 0.3,
+               		    	zIndex: 0
+                },
+                {
+                            name: 'Trend',
+                            data: trend,
+                            type: 'line',
+                            lineWidth: 1,
+                            marker: {enabled:false},
+                            color: Highcharts.getOptions().colors[${position+1}],
+                            fillOpacity: 0.3,
+                            zIndex: 0
+                }
+                ,{
+                            name: 'Forecast(+/-20%)',
+                            data: forecast,
+                            type: 'arearange',
+                            lineWidth: 0,
+                            color: Highcharts.getOptions().colors[${position+2}],
+                            fillOpacity: 0.3,
+                            zIndex: 0
+                }
+           ]
+        });
