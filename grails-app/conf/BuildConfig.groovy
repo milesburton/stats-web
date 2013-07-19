@@ -35,8 +35,8 @@ grails.project.dependency.resolution = {
     dependencies {
 
         compile 'joda-time:joda-time:2.0',
-                'com.popcornteam:restclient:1.0.130113.1729',
-                "net.xelnaga:http-imposter:1.0.130111.1333"
+                'com.popcornteam:restclient:1.0.130719.1658',
+                "net.xelnaga:http-imposter:1.0.130719.1700"
 
 
         test("org.seleniumhq.selenium:selenium-htmlunit-driver:$seleniumVersion") {
