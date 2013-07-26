@@ -11,7 +11,7 @@ class Error404Page extends MainTemplatePage {
         assert title == 'Couldn\'t find that page'
         assert heading == 'Oops!'
         assert subheading == '404 Not Found'
-        assert details == 'Sorry, an error has occured, Requested page not found!'
+        assert details == 'Sorry, an error has occurred, Requested page not found!'
 
         return true
     }
