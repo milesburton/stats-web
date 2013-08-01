@@ -16,7 +16,7 @@
                                                                                                                                                                                      
         ProxyHTMLExtended On                                                                                                                                                         
         SetOutputFilter DEFLATE;proxy-html;INFLATE                                                                                                                                   
-        ProxyHtmlURLMap /stats/ /                                                                                                                                      
+        ProxyHtmlURLMap /stats-web/ /                                                                                                                                      
                                                                                                                                                                                      
         ErrorLog  /var/www/www.razerstats.com/logs/error.log                                                                                                                           
         CustomLog /var/www/www.razerstats.com/logs/access.log combined                                                                                                                 
