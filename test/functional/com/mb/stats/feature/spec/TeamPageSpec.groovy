@@ -43,10 +43,16 @@ class TeamPageSpec extends ApiSpec {
 
         and:
         def history = buildTeamHistoryFixturesFor(teamId, timestampBegin, timestampEnd)
-        def expectedResponse = history.results.collect { [it.timestamp, it.ptsTotal] }.sort { it[0] }
+        def expectedResponse = [series: [[name: "Points", data: history.results.collect { [ it.timestamp, it.ptsTotal] }.sort { it[0]}, type: "area"]]]
 
         when:
-        def response = jsonClient.get("teams/${teamId}/history?" + asQueryString([timestampBegin: timestampBegin, timestampEnd: timestampEnd]))
+        def response = jsonClient.get("teams/${teamId}/history?" + asQueryString([timestampBegin: timestampBegin, timestampEnd: timestampEnd])).bodyAsJsonMap
+
+        and:
+        response.series[0].data = response.series[0].data.collect {
+            it*.toLong()
+        }
+
 
         then:
         response == expectedResponse

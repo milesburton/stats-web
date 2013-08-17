@@ -73,7 +73,7 @@ class TeamsControllerSpec extends Specification {
         controller.history(teamId)
 
         then:
-        response.json == [:]
+        response.json == [series:[[name:"Points", data:[:], type:"area"]]]
 
         and:
         mockCache.verifyCacheCalled(controller)
