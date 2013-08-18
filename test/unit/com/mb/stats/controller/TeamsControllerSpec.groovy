@@ -73,13 +73,15 @@ class TeamsControllerSpec extends Specification {
         controller.history(teamId)
 
         then:
-        response.json == [series:[[name:"Points", data:[:], type:"area"]]]
+        response.json == [series:[[name:'Points', data:[:], type:'area'], [name:'Work Units', data:[:], type:'area']], yAxis:[min:0]]
 
         and:
         mockCache.verifyCacheCalled(controller)
         1 * controller.cachableTillNextUpdateService.tillNextUpdate() >> [:]
         1 * controller.teamsService.fetchHistory(new RequestHistory(teamId: teamId, timestampBegin: params.timestampBegin, timestampEnd: params.timestampEnd)) >> historyResult
-        1 * controller.historyAggregatorService.aggregate(new BulkHistorySource(historyMap: historyResult)) >> [:]
+        1 * controller.historyAggregatorService.map(new BulkHistorySource(historyMap: historyResult), 'ptsTotal') >> [:]
+        1 * controller.historyAggregatorService.map(new BulkHistorySource(historyMap: historyResult), 'wuTotal') >> [:]
+        1 * controller.historyAggregatorService.calculateMin(new BulkHistorySource(historyMap: historyResult), ['wuTotal', 'ptsTotal']) >> 0
         0 * _._
 
     }

@@ -34,7 +34,7 @@ class TeamPageSpec extends ApiSpec {
         hasCorrectHeadings(team)
     }
 
-    def 'highcharts expects history of daily point peaks'() {
+    def 'highcharts expects history of production'() {
 
         given:
         def teamId = 62
@@ -43,7 +43,23 @@ class TeamPageSpec extends ApiSpec {
 
         and:
         def history = buildTeamHistoryFixturesFor(teamId, timestampBegin, timestampEnd)
-        def expectedResponse = [series: [[name: "Points", data: history.results.collect { [ it.timestamp, it.ptsTotal] }.sort { it[0]}, type: "area"]]]
+        def expectedResponse = [
+                series: [
+                        [
+                                name: "Points",
+                                data: history.results.collect { [it.timestamp, it.ptsTotal] }.sort { it[0] },
+                                type: "area"
+                        ],
+                        [
+                                name: "Work Units",
+                                data: history.results.collect { [it.timestamp, it.wuTotal] }.sort { it[0] },
+                                type: "area"
+                        ]
+                ],
+                yAxis: [
+                        min:836102.0
+                ]
+        ]
 
         when:
         def response = jsonClient.get("teams/${teamId}/history?" + asQueryString([timestampBegin: timestampBegin, timestampEnd: timestampEnd])).bodyAsJsonMap

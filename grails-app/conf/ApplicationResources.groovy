@@ -1,37 +1,46 @@
 modules = {
 
-    jquery191 {
-        resource url: 'js/libs/jquery-1.9.1.min.js',                                                    disposition: 'defer'
-        resource url: 'js/libs/jquery-ui-1.10.0.custom.min.js',                                         disposition: 'defer'
-    }
-
+    // Vendor
     baseadmin {
-        dependsOn 'jquery191'
 
         resource url: 'css/font-awesome.min.css'
-        resource url: 'css/bootstrap.min.css'
-        resource url: 'css/bootstrap-responsive.min.css'
-        resource url: 'css/ui-lightness/jquery-ui-1.10.0.custom.min.css'
+
         resource url: 'css/base-admin-2.css'
         resource url: 'css/base-admin-2-responsive.css'
-        resource url: 'less/custom.less',                                                               attrs:[rel: "stylesheet/less", type:'css']
+        resource url: 'less/custom.less', attrs: [rel: "stylesheet/less", type: 'css']
 
-        resource url: 'js/libs/bootstrap.min.js',                                                       disposition: 'defer'
-
-        resource url: 'js/Application.js',                                                              disposition: 'defer'
+        resource url: 'js/vendor/base-admin/base-admin-core.js', disposition: 'defer'
     }
 
-    flot {
-        resource url: 'js/plugins/flot/jquery.flot.js',                                                 disposition: 'defer'
-        resource url: 'js/plugins/flot/jquery.flot.pie.js',                                             disposition: 'defer'
-        resource url: 'js/plugins/flot/jquery.flot.resize.js',                                          disposition: 'defer'
 
-        resource url: 'js/charts/area.js',                                                              disposition: 'defer'
-        resource url: 'js/charts/donut.js',                                                             disposition: 'defer'
+
+    highcharts {
+
+        resource url: 'js/vendor/highcharts/highcharts.src.js'
+        resource url: 'js/vendor/highcharts/highcharts-more.src.js'
+
     }
 
-    pageReports {
+    // Application
+    core {
+        dependsOn 'jquery', 'jquery-ui', 'bootstrap', 'baseadmin', 'modernizr'
+
+        resource url: 'js/vendor/html5.js', wrapper: { s -> "<!--[if lt IE 9]>$s<![endif]-->" }    // HTML 5 shin for < IE 9
+        resource url: 'js/vendor/json3.js', wrapper: { s -> "<!--[if lt IE 8]>$s<![endif]-->" }    // JSON shim for < IE 8
+
+    }
+
+    'page-reports' {
+        dependsOn 'highcharts', 'graph-module'
+
         resource url: 'css/pages/reports.css'
+    }
+
+    'graph-module' {
+        dependsOn 'highcharts'
+
+        resource url: 'cs/modules/graph/theme.coffee'
+        resource url: 'cs/modules/graph/core.coffee'
     }
 
 }

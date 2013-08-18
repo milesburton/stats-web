@@ -56,11 +56,14 @@ grails.project.dependency.resolution = {
 
     plugins {
 
-        runtime ":jquery:1.8.0",
+        runtime ":jquery:1.10.2",
                 ":resources:1.1.6",
                 ":cors:1.0.3",
                 ":zipped-resources:1.0",
-                ":cached-resources:1.0"
+                ":cached-resources:1.0",
+                ":twitter-bootstrap:2.3.2",
+                ":jquery-ui:1.8.24",
+                ":modernizr:2.6.2"
 
                 build ":tomcat:$grailsVersion"
 

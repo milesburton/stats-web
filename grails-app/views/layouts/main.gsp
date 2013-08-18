@@ -11,14 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <r:require modules="baseadmin, jquery191"/>
+    <r:require modules="core"/>
 
     <link rel="shortcut icon" href="${resource(dir: 'img', file: 'favicon.ico')}" type="image/x-icon">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" type="text/css" rel="screenshot" media="screen, projection" />
     <g:layoutHead/>

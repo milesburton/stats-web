@@ -38,14 +38,25 @@ class TeamsController {
         cache cachableTillNextUpdateService.tillNextUpdate()
 
         def result = teamsService.fetchHistory(new RequestHistory(teamId: teamId, timestampBegin: params.timestampBegin.toLong(), timestampEnd: params.timestampEnd.toLong()))
+        def datasource = new BulkHistorySource(historyMap: result)
 
         def j = [
                 series: [
                         [
                                 name: 'Points',
-                                data: historyAggregatorService.aggregate(new BulkHistorySource(historyMap: result)),
+                                data: historyAggregatorService.map(datasource, 'ptsTotal'),
                                 type: 'area'
-                        ]]]
+                        ],
+                        [
+                                name: 'Work Units',
+                                data: historyAggregatorService.map(datasource, 'wuTotal'),
+                                type: 'area'
+                        ],
+                ],
+                yAxis: [
+                        min: historyAggregatorService.calculateMin(datasource, ['wuTotal','ptsTotal'])
+                ]
+        ]
 
         render j as JSON
     }
