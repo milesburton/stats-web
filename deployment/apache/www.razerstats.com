@@ -12,7 +12,7 @@
         ProxyPass / ajp://localhost:8009/stats-web/                                                                                                                        
         ProxyPassReverse / ajp://localhost:8009/stats-web/                                                                                                                 
                                                                                                                                                                                      
-        Header edit Location "^http://www.nzbair.com/stats-web/(.*)$" "http://www.stats.com/$1"                                                                       
+        Header edit Location "^http://www.razerstats.com/stats-web/(.*)$" "http://www.stats.com/$1"                                                                       
                                                                                                                                                                                      
         ProxyHTMLExtended On                                                                                                                                                         
         SetOutputFilter DEFLATE;proxy-html;INFLATE                                                                                                                                   
