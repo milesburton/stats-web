@@ -32,6 +32,9 @@ class TeamPageSpec extends ApiSpec {
 
         and:
         hasCorrectHeadings(team)
+
+        and:
+        hasProductionModule()
     }
 
     def 'highcharts expects history of production'() {

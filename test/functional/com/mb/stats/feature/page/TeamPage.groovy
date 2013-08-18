@@ -1,6 +1,7 @@
 package com.mb.stats.feature.page
 
 import com.mb.stats.feature.base.MainTemplatePage
+import com.mb.stats.feature.page.module.ChartModule
 import com.mb.stats.feature.page.module.StatModule
 
 import java.text.DecimalFormat
@@ -24,6 +25,7 @@ class TeamPage extends MainTemplatePage {
 
     static content = {
         stats       { moduleList StatModule, $('#big_stats div.stat') }
+        chartModule { module ChartModule, $('.widget.production')}
     }
 
     boolean hasCorrectHeadings(def team){
@@ -41,6 +43,11 @@ class TeamPage extends MainTemplatePage {
 
         teamId = (args[0] as Long)
         return super.convertToPath(args)
+    }
+
+    boolean hasProductionModule(){
+        assert chartModule.title == 'Production'
+        true
     }
 
 }

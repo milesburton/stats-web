@@ -61,7 +61,7 @@
 
             <div class="span12">
 
-                <div class="widget stacked">
+                <div class="widget stacked production">
 
                     <div class="widget-header">
                         <i class="icon-bar-chart"></i>
