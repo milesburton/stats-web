@@ -9,7 +9,7 @@ ssh deploy@qp2.agileview.co.uk "test -f /var/lib/tomcat7/webapps/$WAR_NAME.war |
 ssh deploy@qp2.agileview.co.uk "test -d /var/lib/tomcat7/webapps/$WAR_NAME ||  rm -rf /var/lib/tomcat7/webapps/$WAR_NAME"
 
 # Install new application and install apache config
-scp build/libs/$WAR_NAME deploy@qp2.agileview.co.uk:/var/lib/tomcat7/webapps  
+scp build/libs/$WAR_NAME.war deploy@qp2.agileview.co.uk:/var/lib/tomcat7/webapps  
 scp deployment/apache/$SITE_NAME deploy@qp2.agileview.co.uk:/etc/apache2/sites-available
 
 ssh deploy@qp2.agileview.co.uk "sudo /etc/init.d/tomcat7 start"
