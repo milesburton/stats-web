@@ -9,9 +9,8 @@ ssh deploy@qp2.agileview.co.uk "test -f /var/lib/tomcat7/webapps/$WAR_NAME.war |
 ssh deploy@qp2.agileview.co.uk "test -d /var/lib/tomcat7/webapps/$WAR_NAME ||  rm -rf /var/lib/tomcat7/webapps/$WAR_NAME"
 
 # Install new application and install apache config
-ssh deploy@qp2.agileview.co.uk "mv ~/$WAR_NAME.war /var/lib/tomcat7/webapps"
-ssh deploy@qp2.agileview.co.uk "mv deployment/apache/$SITE_NAME /etc/apache2/sites-available"
-
+scp build/libs/$WAR_NAME deploy@qp2.agileview.co.uk:/var/lib/tomcat7/webapps  
+scp deployment/apache/$SITE_NAME deploy@qp2.agileview.co.uk:/etc/apache2/sites-available
 
 ssh deploy@qp2.agileview.co.uk "sudo /etc/init.d/tomcat7 start"
 ssh deploy@qp2.agileview.co.uk "test -f /etc/apache2/sites-available/$SITE_NAME || sudo a2ensite $SITE_NAME"
