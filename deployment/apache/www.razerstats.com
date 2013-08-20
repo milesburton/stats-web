@@ -18,6 +18,6 @@
         SetOutputFilter DEFLATE;proxy-html;INFLATE                                                                                                                                   
         ProxyHtmlURLMap /stats-web/ /                                                                                                                                      
                                                                                                                                                                                      
-        ErrorLog  /var/www/www.razerstats.com/logs/error.log                                                                                                                           
-        CustomLog /var/www/www.razerstats.com/logs/access.log combined                                                                                                                 
+        ErrorLog  /var/log/apache2/www.razerstats.com/error.log                                                                                                                           
+        CustomLog /var/log/apache2/www.razerstats.com/access.log combined                                                                                                                 
 </VirtualHost>    
