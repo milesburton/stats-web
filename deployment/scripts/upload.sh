@@ -14,4 +14,4 @@ scp deployment/apache/$SITE_NAME deploy@qp2.agileview.co.uk:/etc/apache2/sites-a
 
 ssh deploy@qp2.agileview.co.uk "sudo /etc/init.d/tomcat7 start"
 ssh deploy@qp2.agileview.co.uk "test -f /etc/apache2/sites-available/$SITE_NAME || sudo a2ensite $SITE_NAME"
-ssh deploy@qp2.agileview.co.uk "sudo service apache2 restart"
+ssh deploy@qp2.agileview.co.uk "sudo /etc/init.d/apache2 restart"
